@@ -1,0 +1,97 @@
+{{- /*gotype: github.com/antoninferrand/pergolator/codegen/generator/percolatorgen.PercolatorArgs*/ -}}
+{{ define "body" }}
+type {{ .Type }}Percolator struct {
+	fn func(document *{{ .TypePrefix }}{{ .Type }}) bool
+}
+
+// Percolate percolates the document with the percolator's query.
+// It will return a boolean indicating if the query matches the document.
+func (p *{{ .Type }}Percolator) Percolate(document *{{ .TypePrefix }}{{ .Type }}) bool {
+	return p.fn(document)
+}
+
+// New{{ .Type }}PercolatorConstructor is a constructor of percolators.
+// Every percolator it creates will use the parser provided to the constructor.
+func New{{ .Type }}PercolatorConstructor(parseFn tree.ParseFn, modifiers ...tree.Modifiers) func(query string) (*{{ .Type }}Percolator, error) {
+	return func(query string) (*{{ .Type }}Percolator, error) {
+		return New{{ .Type }}Percolator(parseFn, query, modifiers...)
+	}
+}
+
+// New{{ .Type }}Percolator creates a percolator with a given query and a given parser.
+// It returns an error if the parsing failed.
+func New{{ .Type }}Percolator(parseFn tree.ParseFn, query string, modifiers ...tree.Modifiers) (*{{ .Type }}Percolator, error) {
+	root, err := parseFn(query)
+	if err != nil {
+		return nil, err
+	}
+
+    for _, modifier := range modifiers {
+        root = modifier(root)
+        if _, isEmpty := root.(*tree.Empty); isEmpty {
+            // If the query is empty, we return a percolator that always returns false
+            return &{{ .Type }}Percolator{fn: p{{ .Type }}FalseFn}, nil
+        }
+    }
+
+	return &{{ .Type }}Percolator{fn: updateNode{{ .Type }}(root)}, nil
+}
+
+func updateNode{{ .Type }}(root tree.Expr) func(document *{{ .TypePrefix }}{{ .Type }}) bool {
+	switch r := root.(type) {
+	case *tree.And:
+		fns := make([]func(document *{{ .TypePrefix }}{{ .Type }}) bool, 0, len(r.Children))
+		for _, child := range r.Children {
+			fn := updateNode{{ .Type }}(child)
+
+			// Optimize the case where one of the children is always false
+			if reflect.ValueOf(fn).Pointer() == reflect.ValueOf(p{{ .Type }}FalseFn).Pointer() {
+				return p{{ .Type }}FalseFn
+			}
+			fns = append(fns, fn)
+		}
+
+		return func(document *{{ .TypePrefix }}{{ .Type }}) bool {
+			for _, fn := range fns {
+				if !fn(document) {
+					return false
+				}
+			}
+			return true
+		}
+	case *tree.Or:
+		fns := make([]func(document *{{ .TypePrefix }}{{ .Type }}) bool, 0, len(r.Children))
+		for _, child := range r.Children {
+			fn := updateNode{{ .Type }}(child)
+
+			// Optimize the case where one of the children is always false
+			if reflect.ValueOf(fn).Pointer() == reflect.ValueOf(p{{ .Type }}FalseFn).Pointer() {
+				continue
+			}
+			fns = append(fns, fn)
+		}
+
+		if len(fns) == 0 {
+			return p{{ .Type }}FalseFn
+		}
+
+		return func(document *{{ .TypePrefix }}{{ .Type }}) bool {
+			for _, fn := range fns {
+				if fn(document) {
+					return true
+				}
+			}
+			return false
+		}
+	case *tree.Not:
+		child := updateNode{{ .Type }}(r.Child)
+		return func(document *{{ .TypePrefix }}{{ .Type }}) bool {
+			return !child(document)
+		}
+	case *tree.Query:
+		return p{{ .Type }}Query(r)
+	}
+
+	return p{{ .Type }}FalseFn
+}
+{{ end }}

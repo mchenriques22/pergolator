@@ -1,0 +1,6 @@
+{
+  "MyStruct": {
+    "BasicString": "json:\"renamed\"",
+    "IgnoredField": "json:\"-\""
+  }
+}

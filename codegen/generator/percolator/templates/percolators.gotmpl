@@ -1,0 +1,9 @@
+{{- /*gotype: github.com/antoninferrand/pergolator/codegen/generator/percolatorgen.TemplateInput*/ -}}
+{{ define "percolators" }}
+{{- template "header" .HeaderArgs -}}
+
+{{- range .BodyArgs }}
+{{ template "body" . }}
+{{- end -}}
+
+{{ end }}
