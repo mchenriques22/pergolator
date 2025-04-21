@@ -34,7 +34,7 @@ type Log struct {
 
 You will then be able to do:
 ```go
-//go:generate go run github.com/antoninferrand/pergolator <path to this file>.Log
+//go:generate go run github.com/antoninferrand/pergolator <path to this package>.Log
 package main
 
 import (
@@ -68,6 +68,31 @@ func main(){
     }
 }
 ```
+
+
+## Installation
+
+### Package (recommended)
+
+```bash 
+go get github.com/antoninferrand/pergolator
+```
+
+Then you can use with:
+```
+//go:generate github.com/antoninferrand/pergolator <path to your package>.<struct>
+```
+
+### CLI
+
+```bash 
+go install github.com/antoninferrand/pergolator
+```
+
+Then you can use with either:
+- (recommended) `//go:generate pergolator <path to your package>.<struct>` in your code
+- `pergolator --dest-package <package> --path <path to the directory in which the percolator will be written> --prefix <prefix for the file containing the code of the percolator> <path to your package>.<struct>`
+
 
 
 ### Mapping between your logical layer (query) and your physical layer (struct)
@@ -105,7 +130,8 @@ func main() {
 
 ##### Tags
 
-`pergolator` or `json` tags on your struct will modify how the percolator code will be generated.
+By adding either `pergolator` or `json` tags on your struct you can modify how the percolator code will be generated.
+(You can use `pergolator` in case you don't want to add or modify `json` tags).
 
 Their first value will be used to rename the field.
 If the name is `-`, the field will be ignored (it cannot be queried). Any node in the AST that use this field will return `false`. 
@@ -137,7 +163,7 @@ type StructB struct {
 }
 ```
 Can be queried with `Field2:hello` instead of `Field.Field2:hello`.
-For now, it is available only for nested struct, soon for maps and slices.
+For now, it is only available for nested struct, soon for maps and slices.
 
 ##### Descriptors
 
@@ -152,7 +178,7 @@ Example: [descriptor.json](https://github.com/antoninferrand/pergolator/blob/mai
 
 ## Benchmarks
 
-In the following benchmark, each operation consists of matching 1000 logs against a query of 3 fields with AND between them. 1/3 of the logs match the query.
+In the following [benchmark](tests/benchmark/log_bench_test.go), each operation consists of matching 1000 logs against a query of 3 fields with AND between them. 1/3 of the logs match the query.
 ```
 goos: linux
 goarch: amd64
@@ -161,7 +187,7 @@ cpu: Intel(R) Core(TM) i7-8565U CPU @ 1.80GHz
 BenchmarkMatchAll
 BenchmarkMatchAll-8   	   67246	     17045 ns/op	       0 B/op	       0 allocs/op
 ```
-So one average it takes 17ns per evaluation of a query.
+So on average it takes 17ns per evaluation of a query.
 
 On average (based on multiple Go benchmarks), with this hardware and 1vCPU (`-core 1`), we have seen the following durations:
 - 3ns per int/float/bool comparison.
@@ -172,13 +198,7 @@ On average (based on multiple Go benchmarks), with this hardware and 1vCPU (`-co
 
 To confirm with production workload, but it looks fast.
 
-## Installation
-
-To install Pergolator, use go get:
-
-```bash 
-go install github.com/antoninferrand/pergolator
-```
+Additional benchmarks are available in [tests/benchmark](tests/benchmark).
 
 ## Contributing
 
@@ -196,12 +216,13 @@ In particular, we are looking for contributions to the following areas:
 
 ## Limitations
 
-| Limitation                                                                                                                         | Reason                                                                                                                                                                                                                                                                           | Status                   |
-|------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------|
-| Only exported fields can be used in queries.                                                                                       | This is a design choice that could be revisited in the future. It makes sense because unexported field are not supposed to be accessible from the outside, in particular from outside the system.                                                                                | No ongoing work.         |
-| Performance degradation when querying `<struc>.<struct>. ... .<struct>.Field`.                                                     | Currently for each new struct in depth, we call the percolator of that struct with the rest of the AST. This is not optimized as it means calling an additional function for each level of depth. However not doing this is a little bit harder to implement.                    | No ongoing work.         |
-| Some types are not supported (example `map[string]map[string][]string`).                                                           | Currently each "common" types (i.e. types that are not structs with their own percolator) has to be implemented by hand. So with combination of map and slice, it is complex to be exhaustive (and represents few pathological cases).                                           | No ongoing work.         |
-| It is possible to have some conflicts when generating multiple percolators in the same package.                                    | If you use the same sub struct in 2 different structs for example), the helper functions generated for the percolator will collide. A workaround is to generate the percolator in another package, and import it. This is definitely something we want to address in the future. | No ongoing work for now. |
+| Limitation                                                                                                            | Reason                                                                                                                                                                                                                                                                           | Status                    |
+|-----------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------|
+| Time to evaluate N queries grows in O(N)                                                                              | We don't provide a way to match N queries at once.                                                                                                                                                                                                                               | Investigation in progress |
+| Only exported fields can be used in queries.                                                                          | This is a design choice that could be revisited in the future. It makes sense because unexported field are not supposed to be accessible from the outside, in particular from outside the system.                                                                                | No work planned for now   |
+| Performance degradation when querying `<struc>.<struct>. ... .<struct>.Field`.                                        | Currently for each new struct in depth, we call the percolator of that struct with the rest of the AST. This is not optimized as it means calling an additional function for each level of depth. However not doing this is a little bit harder to implement.                    | No work planned for now   |
+| Some types are not supported, in particular combination of map and slices (example `map[string]map[string][]string`). | Currently each "common" types (i.e. types that are not structs with their own percolator) has to be implemented by hand. So with combination of map and slice, it is complex to be exhaustive (they represent a few pathological cases).                                         | No work planned for now   |
+| It is possible to have some conflicts when generating multiple percolators in the same package.                       | If you use the same sub struct in 2 different structs for example), the helper functions generated for the percolator will collide. A workaround is to generate the percolator in another package, and import it. This is definitely something we want to address in the future. | No work planned for now   |
 
 ## Initial RFC
 
