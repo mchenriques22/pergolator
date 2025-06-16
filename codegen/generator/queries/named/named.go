@@ -54,7 +54,7 @@ func createNameQueryWithReturn(sourceTypeName *types.TypeName, underlyingTypeNam
 }
 
 func createNamedQueryFn(underlyingTypeName string) *Statement {
-	return Id("fn").Op(":=").Id("p" + underlyingTypeName + "Query").Call(Op("&").Qual("github.com/antoninferrand/pergolator/tree", "Query").Values(Dict{
+	return Id("fn").Op(":=").Id("p" + underlyingTypeName + "Query").Call(Op("&").Qual("github.com/mchenriques22/pergolator/tree", "Query").Values(Dict{
 		Id("Key"):   Id("suffix"),
 		Id("Sign"):  Id("query").Dot("Sign"),
 		Id("Value"): Id("query").Dot("Value"),
