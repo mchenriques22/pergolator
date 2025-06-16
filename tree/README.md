@@ -30,7 +30,7 @@ Example:
 package main
 
 import (
-	"github.com/antoninferrand/pergolator/tree/defaultparser"
+	"github.com/mchenriques22/pergolator/tree/defaultparser"
 )
 
 func main(){

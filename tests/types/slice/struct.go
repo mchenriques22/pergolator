@@ -1,4 +1,4 @@
-//go:generate go run github.com/antoninferrand/pergolator github.com/antoninferrand/pergolator/tests/types/slice.Struct
+//go:generate go run github.com/mchenriques22/pergolator github.com/mchenriques22/pergolator/tests/types/slice.Struct
 package slice
 
 type Struct struct {

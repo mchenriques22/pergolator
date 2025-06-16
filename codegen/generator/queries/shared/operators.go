@@ -5,7 +5,7 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared/jen"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared/jen"
 )
 
 func GenerateOperatorCases(typeName *types.TypeName, fieldName string, isPointer bool, inner func(*types.TypeName, string, string, bool) *Statement) *Statement {

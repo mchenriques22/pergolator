@@ -3,7 +3,7 @@ package modifiers
 import (
 	"github.com/iancoleman/strcase"
 
-	"github.com/antoninferrand/pergolator/tree"
+	"github.com/mchenriques22/pergolator/tree"
 )
 
 func FormatKeys(format func(string) string) tree.Modifiers {

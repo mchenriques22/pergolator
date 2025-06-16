@@ -15,9 +15,7 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
-var (
-	errTagNotFound = errors.New("tag not found")
-)
+var errTagNotFound = errors.New("tag not found")
 
 type FieldOptions struct {
 	Aliases []string

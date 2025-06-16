@@ -1,9 +1,9 @@
 package defaultparser
 
 import (
-	"github.com/antoninferrand/pergolator/tree"
-	"github.com/antoninferrand/pergolator/tree/defaultparser/lexer"
-	. "github.com/antoninferrand/pergolator/tree/defaultparser/token"
+	"github.com/mchenriques22/pergolator/tree"
+	"github.com/mchenriques22/pergolator/tree/defaultparser/lexer"
+	. "github.com/mchenriques22/pergolator/tree/defaultparser/token"
 )
 
 type parser struct {

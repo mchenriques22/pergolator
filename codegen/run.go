@@ -8,10 +8,10 @@ import (
 	. "github.com/dave/jennifer/jen"
 	"golang.org/x/tools/imports"
 
-	"github.com/antoninferrand/pergolator/codegen/generator/percolator"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared/jen"
-	"github.com/antoninferrand/pergolator/codegen/utils"
+	"github.com/mchenriques22/pergolator/codegen/generator/percolator"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared/jen"
+	"github.com/mchenriques22/pergolator/codegen/utils"
 )
 
 // Run generates the percolator and the queries used by the percolator.

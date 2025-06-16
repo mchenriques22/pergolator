@@ -3,7 +3,7 @@ package lexer
 import (
 	"testing"
 
-	"github.com/antoninferrand/pergolator/tree/defaultparser/token"
+	"github.com/mchenriques22/pergolator/tree/defaultparser/token"
 )
 
 func TestLexer_NextToken(t *testing.T) {

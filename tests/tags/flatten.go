@@ -1,4 +1,4 @@
-//go:generate go run github.com/antoninferrand/pergolator github.com/antoninferrand/pergolator/tests/tags.MyStruct
+//go:generate go run github.com/mchenriques22/pergolator github.com/mchenriques22/pergolator/tests/tags.MyStruct
 package tags
 
 type MyStruct struct {

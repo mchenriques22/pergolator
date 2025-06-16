@@ -6,16 +6,16 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/basic"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/inline"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/map"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/named"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/pointer"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared/jen"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/slice"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/special"
-	"github.com/antoninferrand/pergolator/codegen/utils"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/basic"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/inline"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/map"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/named"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/pointer"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared/jen"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/slice"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/special"
+	"github.com/mchenriques22/pergolator/codegen/utils"
 )
 
 const (
@@ -56,7 +56,7 @@ func GenerateQueryStatements(typeName *types.TypeName, _type types.Type, options
 	if typeName.Type() != nil {
 		genFn, ok := special.KnownTypes[typeName.Type().String()]
 		if ok {
-			return Line().Func().Id("p" + typeName.Name() + "Query").Params(Id("query").Op("*").Qual("github.com/antoninferrand/pergolator/tree", "Query")).Func().Params(Op("*").Add(jen.Qual(typeName))).Bool().Block(genFn(typeName, optionsGetter)).
+			return Line().Func().Id("p" + typeName.Name() + "Query").Params(Id("query").Op("*").Qual("github.com/mchenriques22/pergolator/tree", "Query")).Func().Params(Op("*").Add(jen.Qual(typeName))).Bool().Block(genFn(typeName, optionsGetter)).
 				Line().Line().Add(shared.GenerateFalseFn(typeName)).Line()
 		}
 	}

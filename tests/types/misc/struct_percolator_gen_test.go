@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/antoninferrand/pergolator/tree/defaultparser"
+	"github.com/mchenriques22/pergolator/tree/defaultparser"
 )
 
 func TestPercolate(t *testing.T) {

@@ -6,9 +6,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/antoninferrand/pergolator/modifiers"
-	"github.com/antoninferrand/pergolator/tree"
-	"github.com/antoninferrand/pergolator/tree/defaultparser"
+	"github.com/mchenriques22/pergolator/tree"
+	"github.com/mchenriques22/pergolator/tree/defaultparser"
+	"github.com/mchenriques22/pergolator/modifiers"
 )
 
 func TestModifiers(t *testing.T) {

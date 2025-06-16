@@ -1,4 +1,4 @@
-//go:generate go run github.com/antoninferrand/pergolator github.com/antoninferrand/pergolator/tests/benchmark/boxing.Root --max-depth 5
+//go:generate go run github.com/mchenriques22/pergolator github.com/mchenriques22/pergolator/tests/benchmark/boxing.Root --max-depth 5
 package boxing
 
 type Root struct {

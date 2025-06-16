@@ -7,9 +7,9 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/named"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared"
-	"github.com/antoninferrand/pergolator/codegen/utils"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/named"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared"
+	"github.com/mchenriques22/pergolator/codegen/utils"
 )
 
 func GeneratePointerFieldCase(typeName *types.TypeName, fieldName string, t *types.Pointer) *Statement {

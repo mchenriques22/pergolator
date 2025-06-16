@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/antoninferrand/pergolator/tree"
-	. "github.com/antoninferrand/pergolator/tree/defaultparser/token"
+	"github.com/mchenriques22/pergolator/tree"
+	. "github.com/mchenriques22/pergolator/tree/defaultparser/token"
 )
 
 /*

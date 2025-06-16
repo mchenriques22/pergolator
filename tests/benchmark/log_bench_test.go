@@ -7,11 +7,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/antoninferrand/pergolator/tree/defaultparser"
+	"github.com/mchenriques22/pergolator/tree/defaultparser"
 )
 
-var err1 = "failed to connect to the database"
-var err2 = "timeout while waiting for the response"
+var (
+	err1 = "failed to connect to the database"
+	err2 = "timeout while waiting for the response"
+)
 
 func generateLogs() []*Log {
 	var logs []*Log

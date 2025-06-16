@@ -5,8 +5,8 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared"
-	"github.com/antoninferrand/pergolator/codegen/utils"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared"
+	"github.com/mchenriques22/pergolator/codegen/utils"
 )
 
 func GenerateTimeQuery(typeName *types.TypeName, optionsGetter utils.FieldOptionsGetter) *Statement {

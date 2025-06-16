@@ -11,7 +11,7 @@ import (
 
 	"github.com/urfave/cli/v3"
 
-	"github.com/antoninferrand/pergolator/codegen"
+	"github.com/mchenriques22/pergolator/codegen"
 )
 
 func main() {
@@ -91,7 +91,7 @@ func main() {
 			targetFilename := baseFilename + "_percolator_gen.go"
 
 			// Open the file for writing
-			file, err := os.OpenFile(targetFilename, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0644)
+			file, err := os.OpenFile(targetFilename, os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0o644)
 			if err != nil {
 				return fmt.Errorf("failed to open file %s: %w", goFile, err)
 			}

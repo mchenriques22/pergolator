@@ -3,7 +3,7 @@ package boxing
 import (
 	"testing"
 
-	"github.com/antoninferrand/pergolator/tree/defaultparser"
+	"github.com/mchenriques22/pergolator/tree/defaultparser"
 )
 
 func BenchmarkPercolateWithMultipleBoxingLevel(b *testing.B) {

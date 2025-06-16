@@ -21,7 +21,7 @@ It has been designed to be as fast as possible, which led to the current impleme
 You can find many examples in the [tests](tests) directory, but here is a simple one:
 
 ```go
-//go:generate go run github.com/antoninferrand/pergolator <path to this file>.Log
+//go:generate go run github.com/mchenriques22/pergolator <path to this file>.Log
 package main
 
 type Log struct {

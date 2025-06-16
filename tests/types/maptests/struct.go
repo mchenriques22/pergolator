@@ -1,4 +1,4 @@
-//go:generate go run github.com/antoninferrand/pergolator github.com/antoninferrand/pergolator/tests/types/maptests.Struct
+//go:generate go run github.com/mchenriques22/pergolator github.com/mchenriques22/pergolator/tests/types/maptests.Struct
 package maptests
 
 type Struct struct {

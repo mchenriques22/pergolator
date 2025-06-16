@@ -5,7 +5,7 @@ import (
 
 	"github.com/dave/jennifer/jen"
 
-	"github.com/antoninferrand/pergolator/codegen/utils"
+	"github.com/mchenriques22/pergolator/codegen/utils"
 )
 
 var KnownTypes = map[string]func(typeName *types.TypeName, optionsGetter utils.FieldOptionsGetter) *jen.Statement{

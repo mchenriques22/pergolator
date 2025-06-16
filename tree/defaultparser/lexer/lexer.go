@@ -3,7 +3,7 @@ package lexer
 import (
 	"unicode"
 
-	"github.com/antoninferrand/pergolator/tree/defaultparser/token"
+	"github.com/mchenriques22/pergolator/tree/defaultparser/token"
 )
 
 // Lexer performs lexical analysis/scanning of the input string

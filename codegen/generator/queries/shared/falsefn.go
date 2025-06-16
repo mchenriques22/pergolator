@@ -5,7 +5,7 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared/jen"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared/jen"
 )
 
 func GenerateFalseFn(typeName *types.TypeName) *Statement {

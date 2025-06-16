@@ -38,7 +38,7 @@ func TestRunWithSimpleStruct(t *testing.T) {
 
 	// Run the test
 	var buffer bytes.Buffer
-	err = Run(&buffer, "codegen", "", []string{"github.com/antoninferrand/pergolator/codegen.MyStruct", "github.com/antoninferrand/pergolator/codegen.MyStruct2"}, 2, true)
+	err = Run(&buffer, "codegen", "", []string{"github.com/mchenriques22/pergolator/codegen.MyStruct", "github.com/mchenriques22/pergolator/codegen.MyStruct2"}, 2, true)
 	require.NoError(t, err)
 	assert.Equal(t, 7183, buffer.Len())
 

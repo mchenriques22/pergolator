@@ -6,8 +6,8 @@ import (
 
 	. "github.com/dave/jennifer/jen"
 
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared"
-	"github.com/antoninferrand/pergolator/codegen/generator/queries/shared/jen"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared"
+	"github.com/mchenriques22/pergolator/codegen/generator/queries/shared/jen"
 )
 
 func GenerateMapFieldCase(typeName *types.TypeName, fieldName string, fieldType *types.Map) *Statement {

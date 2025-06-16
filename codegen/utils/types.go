@@ -9,7 +9,7 @@ import (
 	"golang.org/x/tools/go/packages"
 )
 
-// Parse parses a source type path (examples: "github.com/antoninferrand/pergolator/tests/basic.Struct", "http/http.Request") and returns a types.TypeName.
+// Parse parses a source type path (examples: "github.com/mchenriques22/pergolator/tests/basic.Struct", "http/http.Request") and returns a types.TypeName.
 func Parse(sourceTypePath string) (*types.TypeName, error) {
 	idx := strings.LastIndexByte(sourceTypePath, '.')
 	if idx == -1 {

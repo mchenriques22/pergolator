@@ -1,4 +1,4 @@
-//go:generate go run github.com/antoninferrand/pergolator github.com/antoninferrand/pergolator/tests/types/external.IncludeExternalRepo
+//go:generate go run github.com/mchenriques22/pergolator github.com/mchenriques22/pergolator/tests/types/external.IncludeExternalRepo
 
 package external
 

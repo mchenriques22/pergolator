@@ -4,7 +4,7 @@ import (
 	"errors"
 	"testing"
 
-	"github.com/antoninferrand/pergolator/tree/defaultparser/lexer"
+	"github.com/mchenriques22/pergolator/tree/defaultparser/lexer"
 )
 
 func TestParser_Parse(t *testing.T) {
