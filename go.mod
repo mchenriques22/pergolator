@@ -3,9 +3,11 @@ module github.com/antoninferrand/pergolator
 go 1.24.2
 
 require (
-	github.com/antoninferrand/pergolator/tree v0.0.0-00000000000000-000000000000
+	github.com/antoninferrand/pergolator/modifiers v0.0.0-00010101000000-000000000000
+	github.com/antoninferrand/pergolator/tree v0.0.0
 	github.com/dave/jennifer v1.7.1
 	github.com/fatih/structtag v1.2.0
+	github.com/iancoleman/strcase v0.3.0
 	github.com/stretchr/testify v1.10.0
 	github.com/urfave/cli/v3 v3.1.1
 	golang.org/x/tools v0.32.0
