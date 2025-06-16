@@ -7,7 +7,7 @@ require (
 	github.com/fatih/structtag v1.2.0
 	github.com/iancoleman/strcase v0.3.0
 	github.com/mchenriques22/pergolator/modifiers v0.0.0-20250421081237-028940c20d93
-	github.com/mchenriques22/pergolator/tree v0.0.0
+	github.com/mchenriques22/pergolator/tree v0.0.1
 	github.com/stretchr/testify v1.10.0
 	github.com/urfave/cli/v3 v3.1.1
 	golang.org/x/tools v0.32.0
