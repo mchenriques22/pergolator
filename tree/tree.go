@@ -2,6 +2,7 @@ package tree
 
 import (
 	"fmt"
+	"regexp"
 )
 
 type ParseFn func(query string) (Expr, error)
@@ -21,9 +22,10 @@ const (
 )
 
 type Query struct {
-	Key   string
-	Sign  Sign
-	Value string
+	Key           string
+	Sign          Sign
+	Value         string
+	CompiledRegex *regexp.Regexp
 }
 
 func (x *Query) String() string {
